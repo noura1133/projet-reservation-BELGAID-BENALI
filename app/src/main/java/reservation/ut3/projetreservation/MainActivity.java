@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -17,15 +18,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        Intent intent = new Intent(this, Details.class);
+        startActivity(intent);
+
+
+        /*RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<RestaurantModel> restaurantList = generateRestaurantList(); // Méthode pour générer des données de test
         RestaurantAdapter restaurantAdapter = new RestaurantAdapter(restaurantList);
-        recyclerView.setAdapter(restaurantAdapter);
+        recyclerView.setAdapter(restaurantAdapter);*/
     }
 
-    private List<RestaurantModel> generateRestaurantList() {
+    /*private List<RestaurantModel> generateRestaurantList() {
         List<RestaurantModel> restaurantList = new ArrayList<>();
         // Ajoute des exemples de restaurants à la liste
         restaurantList.add(new RestaurantModel("Restaurant A", "123 Main St", R.drawable.restaurant_default_image));
@@ -35,5 +40,5 @@ public class MainActivity extends AppCompatActivity {
 
         // Ajoute d'autres restaurants selon tes besoins
         return restaurantList;
-    }
+    }*/
 }
