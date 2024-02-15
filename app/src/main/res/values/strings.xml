@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">projetReservation</string>
+    <string name="selected_date">Date sélectionnée : %1$s</string>
+
 </resources>
