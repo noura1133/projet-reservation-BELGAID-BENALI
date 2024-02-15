@@ -29,8 +29,8 @@ public class DateFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_date, container, false);
 
         // Initialise les vues
-        textViewDate = rootView.findViewById(R.id.textViewDate);
-        calendarView = rootView.findViewById(R.id.calendarView);
+        textViewDate = rootView.findViewById(R.id.textViewSelectDate);
+        calendarView = rootView.findViewById(R.id.datePicker);
 
         // Configure l'écouteur de sélection de date
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {

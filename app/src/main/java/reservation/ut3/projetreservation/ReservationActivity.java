@@ -16,7 +16,7 @@ public class ReservationActivity extends AppCompatActivity {
         // Associe le TabLayout et le ViewPager
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new ReservationPagerAdapter(getSupportFragmentManager()));
+        //viewPager.setAdapter(new ReservationPagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
     }
 }
