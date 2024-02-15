@@ -1,4 +1,4 @@
-package reservation.ut3.projetreservation;
+/*package reservation.ut3.projetreservation;
 
 import android.os.Bundle;
 
@@ -20,3 +20,4 @@ public class ReservationActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 }
+*/

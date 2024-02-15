@@ -1,5 +1,6 @@
 package reservation.ut3.projetreservation;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,17 @@ import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder>{
 
+    public void setListener(OnRestaurantClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnRestaurantClickListener {
+        void onRestaurantClick(int position);
+    }
+
+
     private List<RestaurantModel> restaurantList;
+    private OnRestaurantClickListener listener;
 
     public RestaurantAdapter(List<RestaurantModel> restaurantList) {
         this.restaurantList = restaurantList;
@@ -27,11 +38,20 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
 
     @Override
-    public void onBindViewHolder(@NonNull RestaurantAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RestaurantAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         RestaurantModel restaurantModel = restaurantList.get(position);
         holder.nameTextView.setText(restaurantModel.getName());
         holder.addressTextView.setText(restaurantModel.getAddress());
         holder.imageView.setImageResource(restaurantModel.getImageResource());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onRestaurantClick(position);
+                }
+            }
+        });
     }
 
     @Override
