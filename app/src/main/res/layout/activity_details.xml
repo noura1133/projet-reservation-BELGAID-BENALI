@@ -108,17 +108,6 @@
             app:layout_constraintStart_toEndOf="@+id/prix_resto_icone"
             app:layout_constraintTop_toTopOf="@+id/prix_resto_icone" />
 
-        <View
-            android:id="@+id/separator"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="17dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/prix_resto" />
 
         <TextView
             android:id="@+id/plus_informatins_titre"
@@ -133,26 +122,15 @@
             app:layout_constraintTop_toBottomOf="@+id/separator" />
 
         <TextView
-            android:id="@+id/horaire_ouverture__titre"
+            android:id="@+id/moyens_paiement_titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:text="Horaires d'ouverture"
+            android:text="Moyens de paiement"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/plus_informatins_titre"
             app:layout_constraintTop_toBottomOf="@+id/plus_informatins_titre" />
-
-        <TextView
-            android:id="@+id/se_rendre_au_resto_titre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="Comment se rendre au restaurant"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/horaire_ouverture"
-            app:layout_constraintTop_toBottomOf="@+id/horaire_ouverture" />
 
         <TextView
             android:id="@+id/transport_titre"
@@ -164,17 +142,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/caracteristiques"
             app:layout_constraintTop_toBottomOf="@+id/caracteristiques" />
-
-        <TextView
-            android:id="@+id/mot_restaurant_titre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="Un mot sur le restaurant"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/se_rendre_au_resto"
-            app:layout_constraintTop_toBottomOf="@+id/se_rendre_au_resto" />
 
         <TextView
             android:id="@+id/caracteristique_titre"
@@ -195,39 +162,18 @@
             android:text="Services"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/mot_restaurant"
-            app:layout_constraintTop_toBottomOf="@+id/mot_restaurant" />
+            app:layout_constraintStart_toStartOf="@+id/moyens_paiement"
+            app:layout_constraintTop_toBottomOf="@+id/moyens_paiement" />
 
         <TextView
-            android:id="@+id/horaire_ouverture"
-            android:layout_width="0dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="10dp"
-            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard "
-            app:layout_constraintEnd_toEndOf="@+id/add_resto"
-            app:layout_constraintStart_toStartOf="@+id/horaire_ouverture__titre"
-            app:layout_constraintTop_toBottomOf="@+id/horaire_ouverture__titre" />
-
-        <TextView
-            android:id="@+id/se_rendre_au_resto"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="10dp"
-            android:text="known printer took a gallk."
-            app:layout_constraintEnd_toEndOf="@+id/horaire_ouverture"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/se_rendre_au_resto_titre"
-            app:layout_constraintTop_toBottomOf="@+id/se_rendre_au_resto_titre" />
-
-        <TextView
-            android:id="@+id/mot_restaurant"
+            android:id="@+id/moyens_paiement"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="known printer took a gallk."
-            app:layout_constraintEnd_toEndOf="@+id/se_rendre_au_resto"
-            app:layout_constraintStart_toStartOf="@+id/mot_restaurant_titre"
-            app:layout_constraintTop_toBottomOf="@+id/mot_restaurant_titre" />
+            app:layout_constraintEnd_toEndOf="@+id/add_resto"
+            app:layout_constraintStart_toStartOf="@+id/moyens_paiement_titre"
+            app:layout_constraintTop_toBottomOf="@+id/moyens_paiement_titre" />
 
         <TextView
             android:id="@+id/services"
@@ -235,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="known printer took a gallk."
-            app:layout_constraintEnd_toEndOf="@+id/mot_restaurant"
+            app:layout_constraintEnd_toEndOf="@+id/moyens_paiement"
             app:layout_constraintStart_toStartOf="@+id/services_titre"
             app:layout_constraintTop_toBottomOf="@+id/services_titre" />
 
@@ -283,15 +229,6 @@
             app:layout_constraintStart_toStartOf="@+id/transports"
             app:layout_constraintTop_toBottomOf="@+id/separator2" />
 
-        <TextView
-            android:id="@+id/avis_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="@+id/transports"
-            app:layout_constraintTop_toBottomOf="@+id/avis_titre" />
-
         <Button
             android:id="@+id/btn_reserver"
             android:layout_width="0dp"
@@ -309,7 +246,31 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avis_1" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_afficher_plus_avis" />
+
+
+        <TextView
+            android:id="@+id/txt_afficher_plus_avis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:clickable="true"
+            android:onClick="ajouterAvis"
+            android:text="Afficher plus d'avis"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avisRecyclerView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/avisRecyclerView"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            app:layout_constraintEnd_toEndOf="@+id/transports"
+            app:layout_constraintStart_toStartOf="@+id/avis_titre"
+            app:layout_constraintTop_toBottomOf="@+id/avis_titre" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
