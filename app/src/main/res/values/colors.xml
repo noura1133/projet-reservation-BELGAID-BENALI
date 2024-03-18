@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_green">#217A25</color>
+    <color name="button_default_color">#C0C0C0</color> <!-- Couleur par défaut (gris clair dans cet exemple) -->
+
 </resources>

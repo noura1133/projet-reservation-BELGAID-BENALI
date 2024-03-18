@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!-- ImageView pour afficher l'image du restaurant -->
+    <!-- Image en haut -->
     <ImageView
-        android:id="@+id/restaurantImageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/restaurant_default_image" />
-
-    <!-- TabLayout pour les onglets -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/imageViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/restaurantImageView"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        android:src="@drawable/img1"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
 
-    <!-- ViewPager pour afficher les fragments d'onglet -->
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+    <!-- Onglets -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tabLayout" />
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabIndicatorAnimationMode="elastic"
+        />
 
-</RelativeLayout>
+    <!-- ViewPager pour les fragments -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
