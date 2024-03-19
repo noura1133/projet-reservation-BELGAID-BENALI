@@ -15,6 +15,7 @@ public class RestaurantModel implements Serializable {
     private String avis ;
     private String imageRef;
     private String imagesDetails;
+    private AvisModel avisResto;
 
     public RestaurantModel() {
     }
