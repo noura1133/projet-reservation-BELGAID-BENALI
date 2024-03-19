@@ -144,20 +144,6 @@
             app:layout_constraintTop_toBottomOf="@+id/caracteristiques" />
 
         <TextView
-<<<<<<< HEAD
-            android:id="@+id/mot_restaurant_titre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="Un mot sur le restaurant"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/moyens_paiement"
-            app:layout_constraintTop_toBottomOf="@+id/moyens_paiement" />
-
-        <TextView
-=======
->>>>>>> ajout-avis-client
             android:id="@+id/caracteristique_titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -181,32 +167,13 @@
 
         <TextView
             android:id="@+id/moyens_paiement"
-<<<<<<< HEAD
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="10dp"
-            android:text="known printer took a gallk."
-            app:layout_constraintEnd_toEndOf="@+id/add_resto"
-            app:layout_constraintStart_toStartOf="@+id/moyens_paiement_titre"
-            app:layout_constraintTop_toBottomOf="@+id/moyens_paiement_titre" />
-
-        <TextView
-            android:id="@+id/mot_restaurant"
-=======
->>>>>>> ajout-avis-client
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="known printer took a gallk."
-<<<<<<< HEAD
-            app:layout_constraintEnd_toEndOf="@+id/moyens_paiement"
-            app:layout_constraintStart_toStartOf="@+id/mot_restaurant_titre"
-            app:layout_constraintTop_toBottomOf="@+id/mot_restaurant_titre" />
-=======
             app:layout_constraintEnd_toEndOf="@+id/add_resto"
             app:layout_constraintStart_toStartOf="@+id/moyens_paiement_titre"
             app:layout_constraintTop_toBottomOf="@+id/moyens_paiement_titre" />
->>>>>>> ajout-avis-client
 
         <TextView
             android:id="@+id/services"
