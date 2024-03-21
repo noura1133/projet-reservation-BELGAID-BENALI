@@ -1,22 +1,36 @@
 package reservation.ut3.projetreservation;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.common.reflect.TypeToken;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 
 public class Details extends AppCompatActivity {
 
@@ -41,6 +55,13 @@ public class Details extends AppCompatActivity {
     private RecyclerView photoRecyclerView;
     PhotoAdapter photoAdapter;
 
+    private Uri imageUri;
+
+
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private ActivityResultLauncher<Intent> takePictureLauncher;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +80,26 @@ public class Details extends AppCompatActivity {
         txt_afficher_plus_avis = findViewById(R.id.txt_afficher_plus_avis);
 
         photoRecyclerView = findViewById(R.id.photoRecyclerView);
+
+        // Trouver l'ImageView contenant l'image
+        ImageView imageViewCaptured = findViewById(R.id.imageViewCaptured);
+
+        // Configurer l'écouteur de clic pour l'agrandissement de l'image
+        imageViewCaptured.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Passer l'URI de l'image capturée à FullScreenImageActivity
+                if (imageUri != null) {
+                    Intent intent = new Intent(Details.this, FullScreenImageActivity.class);
+                    intent.putExtra("imageUri", imageUri.toString());
+                    startActivity(intent);
+                } else {
+                    // Gérer le cas où l'URI de l'image est null
+                    Toast.makeText(Details.this, "L'image n'a pas pu être chargée.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         RestaurantModel clickedRestaurant = (RestaurantModel) getIntent().getSerializableExtra("restaurant");
         if (clickedRestaurant != null) {
@@ -96,6 +137,39 @@ public class Details extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btntakePhoto = findViewById(R.id.btn_take_photo);
+        btntakePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ouvrir la caméra lorsque le bouton est cliqué
+                dispatchTakePictureIntent();
+            }
+        });
+
+        takePictureLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        // Récupérer l'URI de l'image capturée depuis les données de résultat
+                        Intent data = result.getData();
+                        if (data != null) {
+                            Bundle extras = data.getExtras();
+                            if (extras != null) {
+                                // Obtenir l'image capturée en tant qu'objet Bitmap
+                                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                                // Charger l'image capturée dans ton ImageView
+                                imageViewCaptured.setImageBitmap(imageBitmap);
+                                // Rendre l'ImageView visible maintenant que l'image est chargée
+                                imageViewCaptured.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    } else {
+                        Log.d("DetailsActivity", "Résultat annulé ou non OK: " + result.getResultCode());
+                    }
+                });
+
+
+
         // Créez et configurez votre adaptateur pour la liste des avis
         LinearLayoutManager avisLayoutManager = new LinearLayoutManager(this);
         avisRecyclerView.setLayoutManager(avisLayoutManager);
@@ -145,6 +219,44 @@ public class Details extends AppCompatActivity {
             }
         }
         return contentList;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Créer un fichier temporaire pour stocker l'image capturée
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Gérer l'erreur lors de la création du fichier
+                ex.printStackTrace();
+            }
+            // Si le fichier a été créé avec succès, continuer
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "votre.package.name.provider",
+                        photoFile);
+                // Enregistrer l'URI de l'image capturée dans imageUri
+                imageUri = photoURI;
+                // Lancer l'activité de capture de photo avec l'URI du fichier temporaire
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                takePictureLauncher.launch(takePictureIntent);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Créer un nom de fichier unique basé sur la date et l'heure actuelles
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File imageFile = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        return imageFile;
     }
 
 }

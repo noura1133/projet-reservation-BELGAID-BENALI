@@ -15,13 +15,12 @@ public class RestaurantModel implements Serializable {
     private String avis ;
     private String imageRef;
     private String imagesDetails;
-    private AvisModel avisResto;
+    //private AvisModel avisResto;
 
     public RestaurantModel() {
     }
 
-
-    public RestaurantModel(String id, String nom, String adresse, String type, String prixMoyen, String moyensPaiement, String services, String caracteristiques, String transports, String avis) {
+    public RestaurantModel(String id, String nom, String adresse, String type, String prixMoyen, String moyensPaiement, String services, String caracteristiques, String transports, String avis /*, AvisModel avisResto*/) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -32,6 +31,7 @@ public class RestaurantModel implements Serializable {
         this.caracteristiques = caracteristiques;
         this.transports = transports;
         this.avis = avis;
+        //this.avisResto = avisResto;
         //this.imageRef = imageRef;
     }
 
@@ -71,6 +71,8 @@ public class RestaurantModel implements Serializable {
     public String getImagesDetails() {
         return imagesDetails;
     }
+    //public AvisModel getAvisResto() { return avisResto; }
+
     void setId(String id) {
         this.id = id;
     }
@@ -107,5 +109,5 @@ public class RestaurantModel implements Serializable {
     void setImagesDetails(String imagesDetails) {
         this.imagesDetails = imagesDetails;
     }
-
+    //public void setAvisResto(AvisModel avisResto) { this.avisResto = avisResto; }
 }

@@ -229,6 +229,59 @@
             app:layout_constraintStart_toStartOf="@+id/transports"
             app:layout_constraintTop_toBottomOf="@+id/separator2" />
 
+        <!--test-->
+
+        <EditText
+            android:id="@+id/editTextNomAvis"
+            android:layout_width="355dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:hint="Nom d'utilisateur"
+            android:background="@drawable/edit_text_border"
+            app:layout_constraintStart_toStartOf="@+id/avis_titre"
+            app:layout_constraintTop_toBottomOf="@+id/avis_titre" />
+
+        <!-- Zone de texte multiligne pour la description de l'avis -->
+
+
+        <EditText
+            android:id="@+id/editTextDescriptionAvis"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="top"
+            android:hint="Description de l'avis"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:background="@drawable/edit_text_border"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNomAvis"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editTextNomAvis"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNomAvis" />
+
+
+        <Button
+            android:id="@+id/btn_take_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:onClick="takePhoto"
+            android:text="Prendre une photo"
+            app:layout_constraintStart_toStartOf="@id/editTextDescriptionAvis"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescriptionAvis" />
+        <!-- Ajoute une vue ImageView pour afficher l'image capturée -->
+
+
+        <ImageView
+            android:id="@+id/imageViewCaptured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/btn_take_photo"
+            tools:layout_editor_absoluteX="107dp" />
+
         <Button
             android:id="@+id/btn_reserver"
             android:layout_width="0dp"
@@ -245,8 +298,10 @@
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_afficher_plus_avis" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_afficher_plus_avis"
+            app:layout_constraintVertical_bias="0.0" />
 
 
         <TextView
@@ -267,10 +322,11 @@
             android:id="@+id/avisRecyclerView"
             android:layout_width="306dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="132dp"
             app:layout_constraintEnd_toEndOf="@+id/transports"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/avis_titre"
-            app:layout_constraintTop_toBottomOf="@+id/avis_titre" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_take_photo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
