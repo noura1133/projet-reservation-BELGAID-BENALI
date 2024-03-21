@@ -19,9 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements RestaurantAdapter.OnRestaurantClickListener{
@@ -29,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements RestaurantAdapter
     private FirebaseDatabaseHelper firebaseDatabaseHelper;
     private RestaurantAdapter restaurantAdapter;
     private List<RestaurantModel> restaurantList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,33 +45,28 @@ public class MainActivity extends AppCompatActivity implements RestaurantAdapter
         restaurantAdapter.setListener(this);
         recyclerView.setAdapter(restaurantAdapter);
 
-        // Récupérer les restaurants depuis la base de données Firebase
         retrieveRestaurantsFromFirebase();
     }
-
 
     private void retrieveRestaurantsFromFirebase() {
         firebaseDatabaseHelper.retrieveRestaurants(new FirebaseDatabaseHelper.DataCallback<List<RestaurantModel>>() {
             @Override
-            public void onSuccess(List<RestaurantModel> data) {
+            public void onDataFetched(List<RestaurantModel> data) {
+                restaurantList.clear();
                 restaurantList.addAll(data);
                 restaurantAdapter.notifyDataSetChanged();
             }
-            @Override
-            public void onFailure(Exception exception) {
-               Log.e("FirebaseDatabaseHelper", "Erreur lors de la récupération des restaurants : " + exception.getMessage());
-            }
         });
     }
-
     @Override
     public void onRestaurantClick(int position) {
+
         RestaurantModel clickedRestaurant = restaurantList.get(position);
         Intent intent = new Intent(this, Details.class);
         intent.putExtra("restaurant", clickedRestaurant);
         startActivity(intent);
 
     }
-
-
 }
+
+

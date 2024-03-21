@@ -1,12 +1,14 @@
 package reservation.ut3.projetreservation;
 
-public class AvisModel {
+import java.io.Serializable;
+import java.util.Map;
+
+public class AvisModel implements Serializable {
     private String nom;
     private String description;
     private String photo;
 
     public AvisModel() {
-        // Constructeur par défaut requis pour Firebase Realtime Database
     }
 
     public AvisModel(String nom, String description, String photo) {
@@ -37,5 +39,13 @@ public class AvisModel {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Map<String, Object> toMap() {
+        return Map.of(
+                "nom", nom,
+                "description", description,
+                "photo", photo
+        );
     }
 }

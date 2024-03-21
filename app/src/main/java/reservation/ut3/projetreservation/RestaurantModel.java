@@ -1,6 +1,9 @@
 package reservation.ut3.projetreservation;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class RestaurantModel implements Serializable {
     private String id;
@@ -12,16 +15,14 @@ public class RestaurantModel implements Serializable {
     private String services ;
     private String caracteristiques ;
     private String transports ;
-    private String avis ;
     private String imageRef;
     private String imagesDetails;
-    private AvisModel avisResto;
+    private List<AvisModel> avisResto;
 
     public RestaurantModel() {
     }
 
-
-    public RestaurantModel(String id, String nom, String adresse, String type, String prixMoyen, String moyensPaiement, String services, String caracteristiques, String transports, String avis) {
+    public RestaurantModel(String id,String nom, String adresse, String type, String prixMoyen, String moyensPaiement, String services, String caracteristiques, String transports, List<AvisModel> avisResto, String imageRef, String imagesDetails) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -31,8 +32,9 @@ public class RestaurantModel implements Serializable {
         this.services = services;
         this.caracteristiques = caracteristiques;
         this.transports = transports;
-        this.avis = avis;
-        //this.imageRef = imageRef;
+        this.imageRef = imageRef;
+        this.imagesDetails = imagesDetails;
+        this.avisResto = avisResto;
     }
 
     public String getId() {
@@ -62,8 +64,8 @@ public class RestaurantModel implements Serializable {
     public String getTransports() {
         return transports;
     }
-    public String getAvis() {
-        return avis;
+    public List<AvisModel> getAvisResto() {
+        return avisResto;
     }
     public String getImageRef() {
         return imageRef;
@@ -98,8 +100,8 @@ public class RestaurantModel implements Serializable {
     void setTransports(String transports) {
         this.transports = transports;
     }
-    void setAvis(String avis) {
-        this.avis = avis;
+    void setAvisResto(List<AvisModel> avisResto) {
+        this.avisResto = avisResto;
     }
     void setImageRef(String imageRef) {
         this.imageRef = imageRef;
@@ -107,5 +109,4 @@ public class RestaurantModel implements Serializable {
     void setImagesDetails(String imagesDetails) {
         this.imagesDetails = imagesDetails;
     }
-
 }

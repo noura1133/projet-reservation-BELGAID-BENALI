@@ -17,8 +17,15 @@ import com.google.common.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Details extends AppCompatActivity {
+
+    FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper();
+
+    private Button  btnTest;
+
+    private Button btnReserver ;
 
     private TextView nom_resto ;
     private TextView add_resto;
@@ -31,8 +38,8 @@ public class Details extends AppCompatActivity {
 
 
     private TextView txt_afficher_plus_avis ;
-    private List<String> fullAvisList = new ArrayList<>();
-    private List<String> avisList;
+    private List<AvisModel> fullAvisList = new ArrayList<>();
+    private List<AvisModel> avisList = new ArrayList<>();
     private boolean areAvisExpanded  = false;
     private RecyclerView avisRecyclerView;
     private AvisAdapter avisAdapter ;
@@ -45,6 +52,10 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        btnTest = findViewById(R.id.btn_test);
+
+        btnReserver = findViewById(R.id.btn_reserver);
 
         nom_resto = findViewById(R.id.nom_resto);
         add_resto = findViewById(R.id.add_resto);
@@ -62,7 +73,6 @@ public class Details extends AppCompatActivity {
 
         RestaurantModel clickedRestaurant = (RestaurantModel) getIntent().getSerializableExtra("restaurant");
         if (clickedRestaurant != null) {
-            // Mettez à jour les vues avec les détails du restaurant
             nom_resto.setText(clickedRestaurant.getNom());
             add_resto.setText(clickedRestaurant.getAdresse());
             type_resto.setText(clickedRestaurant.getType());
@@ -72,35 +82,24 @@ public class Details extends AppCompatActivity {
             caracteristiques.setText(clickedRestaurant.getCaracteristiques());
             transports.setText(clickedRestaurant.getTransports());
 
-            fullAvisList = convertStringToList(clickedRestaurant.getAvis());
+            fullAvisList = clickedRestaurant.getAvisResto();
             imageDetailsList = convertStringToList(clickedRestaurant.getImagesDetails());
 
             // Utiliser Picasso pour charger l'image depuis l'URL dans imageRef
         }
 
-        // Configurez le LinearLayoutManager horizontal
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         photoRecyclerView.setLayoutManager(layoutManager);
 
-        // Créez et configurez votre adaptateur pour la liste de photos (à implémenter)
+
         photoAdapter = new PhotoAdapter(this, imageDetailsList);
         photoRecyclerView.setAdapter(photoAdapter);
 
-        Button btnReserver = findViewById(R.id.btn_reserver);
-
-        btnReserver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lorsque le bouton est cliqué, ouvrir ReservationActivity
-                Intent intent = new Intent(Details.this, ReservationActivity.class);
-                startActivity(intent);
-            }
-        });
-        // Créez et configurez votre adaptateur pour la liste des avis
         LinearLayoutManager avisLayoutManager = new LinearLayoutManager(this);
         avisRecyclerView.setLayoutManager(avisLayoutManager);
 
-        avisList = new ArrayList<>();
+
         avisList.add(fullAvisList.get(0));
 
         // Ajoutez d'autres avis si nécessaire
@@ -110,10 +109,8 @@ public class Details extends AppCompatActivity {
         txt_afficher_plus_avis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Vérifier l'état actuel de l'affichage des avis
                     if (areAvisExpanded) {
-                        // Afficher moins d'avis
-                        avisList.clear(); // Supprimer tous les avis
+                        avisList.clear();
                         avisList.add(fullAvisList.get(0));
                         avisAdapter.notifyDataSetChanged();
                         ViewGroup.LayoutParams params = avisRecyclerView.getLayoutParams();
@@ -134,6 +131,38 @@ public class Details extends AppCompatActivity {
                     }
             }
         });
+
+        btnReserver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Details.this, ReservationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AvisModel nouvelAvisTest = new AvisModel("Auteur de test", "Description de test", "URL de test");
+                String restaurantId = clickedRestaurant.getId();
+
+                int nombreAvis = fullAvisList.size() + 1;
+                String nouvelAvisKey = String.format("%02d", nombreAvis);
+
+                firebaseDatabaseHelper.ajouterAvis(restaurantId,nouvelAvisKey,nouvelAvisTest, new FirebaseDatabaseHelper.UpdateCallback() {
+                    @Override
+                    public void onUpdateSuccess() {
+                        Log.d("FirebaseDatabaseHelper", "Avis de test ajouté avec succès.");
+                    }
+                    @Override
+                    public void onUpdateFailed(String errorMessage) {
+                        Log.e("FirebaseDatabaseHelper", "Erreur lors de l'ajout de l'avis de test : " + errorMessage);
+                    }
+                });
+            }
+        });
+
+
     }
 
     private List<String> convertStringToList(String firebaseString) {
@@ -146,5 +175,7 @@ public class Details extends AppCompatActivity {
         }
         return contentList;
     }
+
+
 
 }

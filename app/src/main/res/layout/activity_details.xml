@@ -272,6 +272,15 @@
             app:layout_constraintStart_toStartOf="@+id/avis_titre"
             app:layout_constraintTop_toBottomOf="@+id/avis_titre" />
 
+        <Button
+            android:id="@+id/btn_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="Button"
+            app:layout_constraintStart_toStartOf="@+id/btn_reserver"
+            app:layout_constraintTop_toBottomOf="@+id/btn_reserver" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
