@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <!-- Titre de la page de validation -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +13,6 @@
         android:textStyle="bold"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Message de confirmation -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +21,6 @@
         android:gravity="center"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Bouton pour revenir à l'écran précédent -->
     <Button
         android:id="@+id/buttonAccueil"
         android:layout_width="wrap_content"

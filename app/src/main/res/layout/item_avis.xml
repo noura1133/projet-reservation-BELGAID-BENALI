@@ -30,6 +30,4 @@
                     android:textStyle="italic"
                     android:layout_margin="8dp" />
         </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>

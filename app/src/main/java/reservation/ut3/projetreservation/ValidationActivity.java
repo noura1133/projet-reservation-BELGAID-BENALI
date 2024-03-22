@@ -18,10 +18,8 @@ public class ValidationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_validation);
 
-        // Trouver le bouton de retour dans le layout
         Button buttonAccueil = findViewById(R.id.buttonAccueil);
 
-        // Définir un écouteur de clic pour le bouton de retour
         buttonAccueil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

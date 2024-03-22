@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateFragment extends Fragment {
-
     private TextView textViewSelectDate;
     private CalendarView calendarView;
     private Button buttonNext;
@@ -34,29 +33,23 @@ public class DateFragment extends Fragment {
         calendarView = rootView.findViewById(R.id.calendarView);
         buttonNext = rootView.findViewById(R.id.buttonNext);
 
-        // Obtenir la date actuelle
         Calendar currentDate = Calendar.getInstance();
         long currentTimeInMillis = currentDate.getTimeInMillis();
 
-        // Définir la date minimale du CalendarView sur la date actuelle
         calendarView.setMinDate(currentTimeInMillis);
 
 
-        // Afficher la date actuelle dans le TextView
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String selectedDate = sdf.format(currentDate.getTime());
         textViewSelectDate.setText(getString(R.string.selected_date, selectedDate));
 
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            // Empêcher la sélection de dates antérieures à la date actuelle
             Calendar selectedDateCalendar = Calendar.getInstance();
             selectedDateCalendar.set(year, month, dayOfMonth);
             long selectedTimeInMillis = selectedDateCalendar.getTimeInMillis();
             if (selectedTimeInMillis < currentTimeInMillis) {
-                // Si la date sélectionnée est antérieure à la date actuelle, réinitialiser le CalendarView à la date actuelle
                 calendarView.setDate(currentTimeInMillis);
             } else {
-                // Afficher la date sélectionnée dans le TextView
                 String selectedDateString = sdf.format(selectedDateCalendar.getTime());
                 textViewSelectDate.setText(getString(R.string.selected_date, selectedDateString));
             }
@@ -65,7 +58,6 @@ public class DateFragment extends Fragment {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Passer au fragment suivant
                 ViewPager2 viewPager = getActivity().findViewById(R.id.viewPager2);
                 viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
             }

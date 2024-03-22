@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class InformationFragment extends Fragment {
-
     private EditText editTextNom;
     private EditText editTextPrenom;
     private EditText editTextEmail;
@@ -29,18 +28,14 @@ public class InformationFragment extends Fragment {
         editTextEmail = rootView.findViewById(R.id.editTextEmail);
         editTextTelephone = rootView.findViewById(R.id.editTextTelephone);
 
-        // Ajouter un bouton de validation et définir un OnClickListener pour récupérer les valeurs saisies
         Button buttonValider = rootView.findViewById(R.id.buttonValider);
         buttonValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Créer une intention pour démarrer l'activité de validation
                 Intent intent = new Intent(requireContext(), ValidationActivity.class);
                 startActivity(intent);
             }
         });
-
-
         return rootView;
     }
 }

@@ -103,7 +103,6 @@ public class FirebaseDatabaseHelper {
                 });
     }
 
-    // Interface pour le callback
     public interface UpdateCallback {
         void onUpdateSuccess();
         void onUpdateFailed(String errorMessage);

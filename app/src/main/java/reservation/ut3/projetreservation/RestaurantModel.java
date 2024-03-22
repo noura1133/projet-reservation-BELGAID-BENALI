@@ -19,9 +19,9 @@ public class RestaurantModel implements Serializable {
     private String imagesDetails;
     private List<AvisModel> avisResto;
 
+
     public RestaurantModel() {
     }
-
     public RestaurantModel(String id,String nom, String adresse, String type, String prixMoyen, String moyensPaiement, String services, String caracteristiques, String transports, List<AvisModel> avisResto, String imageRef, String imagesDetails) {
         this.id = id;
         this.nom = nom;
@@ -73,6 +73,7 @@ public class RestaurantModel implements Serializable {
     public String getImagesDetails() {
         return imagesDetails;
     }
+
     void setId(String id) {
         this.id = id;
     }

@@ -35,10 +35,8 @@ public class TimeFragment extends Fragment {
         dinnerButtonContainer = rootView.findViewById(R.id.dinnerButtonContainer);
         nextButton = rootView.findViewById(R.id.nextButton);
 
-        // Générer les boutons pour le déjeuner
         generateTimeButtons(lunchButtonContainer, lunchTimes);
 
-        // Générer les boutons pour le dîner
         generateTimeButtons(dinnerButtonContainer, dinnerTimes);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -50,23 +48,19 @@ public class TimeFragment extends Fragment {
 
             }
         });
-
-
         return rootView;
     }
 
     private Button lastSelectedButton;
 
     private void generateTimeButtons(LinearLayout layout, String[] times) {
-        int buttonsPerRow = 4; // Nombre de boutons par ligne
+        int buttonsPerRow = 4;
 
-        // Calcule de la largeur de l'écran
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
 
         for (int i = 0; i < times.length; i++) {
-            // Créer un nouveau LinearLayout horizontal si nécessaire
             if (i % buttonsPerRow == 0) {
                 LinearLayout rowLayout = new LinearLayout(requireContext());
                 rowLayout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -79,33 +73,27 @@ public class TimeFragment extends Fragment {
 
             Button button = new Button(requireContext());
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    screenWidth / buttonsPerRow, // Largeur en fonction de l'écran et du nombre de boutons par ligne
+                    screenWidth / buttonsPerRow,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            params.setMargins(8, 8, 8, 8); // Ajouter des marges pour espacer les boutons
+            params.setMargins(8, 8, 8, 8);
             button.setLayoutParams(params);
             button.setText(times[i]);
-            int finalI = i; // Déclaration finale de l'index
+            int finalI = i;
             button.setOnClickListener(v -> {
-                // Désélectionner le dernier bouton sélectionné
                 if (lastSelectedButton != null && lastSelectedButton != button) {
                     int defaultColor = ContextCompat.getColor(requireContext(), R.color.button_default_color);
                     lastSelectedButton.setBackgroundColor(defaultColor);
                 }
-                // Conserver une référence au dernier bouton sélectionné
                 lastSelectedButton = button;
-                // Gérer la sélection de l'heure ici
                 handleTimeSelection(times[finalI]);
-                // Changer la couleur du bouton sélectionné en vert
                 int color = ContextCompat.getColor(requireContext(), R.color.dark_green);
                 button.setBackgroundColor(color);
             });
 
-            // Définir la couleur par défaut du bouton
             int defaultColor = ContextCompat.getColor(requireContext(), R.color.button_default_color);
             button.setBackgroundColor(defaultColor);
 
-            // Trouver le LinearLayout horizontal actuel et ajouter le bouton
             LinearLayout rowLayout = (LinearLayout) layout.getChildAt(layout.getChildCount() - 1);
             if (rowLayout != null) {
                 rowLayout.addView(button);

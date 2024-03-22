@@ -13,17 +13,15 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"
-        android:layout_gravity="center_horizontal"/> <!-- Ajout de cette ligne pour centrer le texte -->
+        android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:id="@+id/buttonsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <!-- Boutons seront ajoutés ici dynamiquement -->
-
     </LinearLayout>
+
     <Button
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"

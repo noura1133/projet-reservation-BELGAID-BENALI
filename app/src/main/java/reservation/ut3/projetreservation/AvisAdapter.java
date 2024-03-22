@@ -15,8 +15,6 @@ import java.util.List;
 public class AvisAdapter extends RecyclerView.Adapter<AvisAdapter.AvisViewHolder> {
 
     private Context context;
-    //private List<String> avisList;
-
     private List<AvisModel> avisList = new ArrayList<>();
 
     public AvisAdapter(Context context, List<AvisModel> avisList) {
@@ -33,8 +31,6 @@ public class AvisAdapter extends RecyclerView.Adapter<AvisAdapter.AvisViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull AvisViewHolder holder, int position) {
-        /*List<AvisModel> avis = avisList.get(position);
-        holder.txtAvis.setText(avis);*/
         AvisModel avis = avisList.get(position);
         holder.txtAuteur.setText(avis.getNom());
         holder.txtAvis.setText(avis.getDescription());

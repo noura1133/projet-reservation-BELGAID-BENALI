@@ -44,8 +44,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         RestaurantModel restaurantModel = restaurantList.get(position);
         holder.nameTextView.setText(restaurantModel.getNom());
         holder.addressTextView.setText(restaurantModel.getAdresse());
-        //holder.imageView.setImageResource(restaurantModel.getImageRef());
-        // Utiliser Picasso pour charger l'image depuis l'URL dans imageRef
+
         if (restaurantModel.getImageRef() != null) {
             Picasso.get().load(restaurantModel.getImageRef()).into(holder.imageView);
         }
